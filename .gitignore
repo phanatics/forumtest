@@ -1,0 +1,12 @@
+venv/
+media/
+static_src/
+.idea/
+.DS_Store
+*.pem
+*.pyc
+*.rdb
+nohup.out
+ssh_server
+env_settings.py
+*.log

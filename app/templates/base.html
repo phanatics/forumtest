@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Forum{% endblock %}</title>
+    <link rel="stylesheet" href="/static/lib/semantic/semantic.min.css">
+    <style>
+        .mainwidth{margin:0 auto;max-width:900px;}
+        .mainwidth > h1{margin:30px 0;}
+        #main{position: relative;}
+    </style>
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <div class="mainwidth">
+        <h1>Forum test app</h1>
+            <div id="main" class="ui raised segment">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <script src="/static/lib/js/jquery.min.js"></script>
+    <script src="/static/lib/semantic/semantic.min.js"></script>
+    {% block before_body_end %}{% endblock %}
+</body>
+</html>

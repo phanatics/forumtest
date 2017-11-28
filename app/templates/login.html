@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="ui form">
+    <div class="field">
+        <input type="email" id="txt_email" placeholder="Email address..." />
+    </div>
+    <div class="field">
+        <input type="password" id="txt_password" placeholder="Password..." />
+    </div>
+    <div class="field">
+        <button class="ui blue button" id="btn_signin">SIGN IN</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block before_body_end %}
+<script>
+    $(function(){
+
+        $("#btn_signin").click(function(){
+
+            var email = $("#txt_email").val(),
+                pass = $("#txt_password").val();
+
+            if (!email || !pass)
+                return;
+
+            var _fail = function(msg){
+                var $div = $('<div class="ui red message">' + msg + '</div>');
+                $("#main").append($div);
+                setTimeout(function(){ $div.fadeOut(function(){ $div.remove(); }); }, 2000);
+            };
+
+            $.post("/api/login", { email: email, password: pass }, function(res){
+                if (res.status && res.status == "OK") {
+                    window.location.href = "/";
+                }
+                else _fail(res.error || "Internal Error");
+            }).fail(function(res){
+                _fail(res.error || "Internal Error");
+            });
+        });
+    });
+</script>
+{% endblock %}
